@@ -2,25 +2,25 @@
 <html>
 <head>
     <meta charset="utf*8">
-    <title> SurtePapa </title>
+    <title> SurtetePapa </title>
 </head>
 <body>
-    <h1 align="center">SurtePapa</h1>
-    <table align="center">
+    <h1 align="center">SúrtetePapá</h1>
+    <table  align="center">
         <tr>
-            <th> <h2> Sabritas Originales </h2> </th>
-            <th> <h2> Chips Jalapeño </h2> </th>
-            <th> <h2> Best Choice Originales </h2></th>
+            <th style="width: 302px; padding: 0px;"> <h2> Sabritas Originales </h2> </th>
+            <th style="width: 302px; padding: 0px;"> <h2> Chips Jalapeño </h2> </th>
+            <th style="width: 302px; padding: 0px;"> <h2> Best Choice Originales </h2></th>
         </tr>
-        <tr>
+        <tr align="center" style="height: 307px;">
             <td>
-                <img id="sabritas" onmouseout="desenfocarImagen('#sabritas')" onmouseover="enfocarImagen('#sabritas')" src="img/Sabritas-Originales.png" width=300 height=300>
+                <img  id="sabritas" onclick="seleccionarItem('Sabritas Originales',74.00)" onmouseout="desenfocarImagen('#sabritas')" onmouseover="enfocarImagen('#sabritas')" src="img/Sabritas-Originales.png" width=200 height=200>
             </td>
             <td>
-                <img id="chips" onmouseout="desenfocarImagen('#chips')" onmouseover="enfocarImagen('#chips')" src="img/chips-jalapenio.jpg" width=300 height=300>
+                <img id="chips" onclick="seleccionarItem('Chips Jalapenio',29.90)" onmouseout="desenfocarImagen('#chips')" onmouseover="enfocarImagen('#chips')" src="img/chips-jalapenio.jpg" width=200 height=200>
             </td>
             <td>
-                <img id="bestChoice" onmouseout="desenfocarImagen('#bestChoice')" onmouseover="enfocarImagen('#bestChoice')" src="img/bestChoice.jpg" width=300 height=300>
+                <img id="bestChoice" onclick="seleccionarItem('Best Choice Originales',20.90)" onmouseout="desenfocarImagen('#bestChoice')" onmouseover="enfocarImagen('#bestChoice')" src="img/bestChoice.jpg" width=200 height=200>
             </td>
         </tr>
         <tr>
@@ -50,18 +50,40 @@
         </tr>
     </table>
 
-    <form>
-        <label for="nombre"> Producto </label>
-        <input type="text" name="nombre" id="name_id">
+    <form id="formularioPedido" onchange="validarPedido()">
+        <table align="center">
+            <tr >
+                <td style="padding: 5px 0px;">
+                    <label for="producto"> Producto </label>
+                    <input type="text" name="producto" id="name_id" readonly >
+                </td>
+                <td >
+                    <label style="padding: 5px 0px 0px 13%;"    for="precio"> Precio $</label>
+                    <input type="number" name="precio" id="precio_id"  readonly> MXN
+                </td>
+            </tr> 
 
-        <label for="precio"> Precio </label>
-        <input type="text" name="precio" id="precio_id" disabled>
+            <tr>
+                <td style="padding: 10px 0px;">
+                    <label for="cantidad"> Cantidad</label>
+                    <input type="number" name="cantidad" id="cantidad_id" min="1" max="100" step="1" oninput="calcularTotal()" title="Debe de pedir al menos un pieza"> 
+                </td>
+                <td>
+                    <label for="total"> Total a pagar $</label> 
+                    <input type="number" name="total" id="total_id" readonly > MXN
+                </td>
+            </tr>
 
-        <label for="cantidad"> Cantidad</label>
-        <input type="number" name="cantidad" id="cantidad_id" min="1" max="20" step="1"> 
-    
-        <label for="total"> Total a pagar </label> 
-        <input type="text" name="total" id="total_id" disabled>
+
+            <tr align="right">
+                <td  colspan="2">
+                    <button style="padding: 7px;" type="reset" onclick="limpiar()"> Limpiar</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button style="padding: 7px;" id="boton_pagar" type="submit" form="formularioPedido" value="Pagar" disabled>Pagar</button>
+                </td>
+            </tr>
+
+        </table>
         
     </form>
     <script src="objectsProp.js"> </script>
